@@ -38,13 +38,13 @@ def set_led_brightness():
     led_brightness['blue'] = data['blue']
 
     # Obliczenie wypełnienia sygnału PWM na podstawie wartości jasności (0-100)
-    red_pwm = (led_brightness['red'] / 100) * 255
-    green_pwm = (led_brightness['green'] / 100) * 255
-    blue_pwm = (led_brightness['blue'] / 100) * 255
+    red_pwm = (int(led_brightness['red']) / 100) * 255
+    green_pwm = (int(led_brightness['green']) / 100) * 255
+    blue_pwm = (int(led_brightness['blue']) / 100) * 255
 
     # Ustawienie jasności składowych diody RGB za pomocą sygnału PWM
-    set_led_color(red_pwm, green_pwm, blue_pwm)
+    set_led_color(int(red_pwm), int(green_pwm), int(blue_pwm))
     return jsonify({"status": "Zmieniono składowe diodencji."})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+     app.run(host='192.168.0.108', port=5000, debug=True)
